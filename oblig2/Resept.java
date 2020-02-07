@@ -11,7 +11,7 @@ public abstract class Resept{
 
 
 	public Resept(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit){
-		this.pasientId = pasientID; this.legemiddel = legemiddel;
+		this.pasientId = pasientId; this.legemiddel = legemiddel;
 		this.refLege = utskrivendeLege; 
 		this.reit = reit;
 		id = idTeller++;
