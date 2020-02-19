@@ -1,5 +1,7 @@
 public class Lenkeliste<T> implements Liste<T>{
-
+	/* Fifo lenkeliste
+	 *
+	 */
 	protected Node<T> forste = null;
 	private int noder = 0; 
 
@@ -33,16 +35,20 @@ public class Lenkeliste<T> implements Liste<T>{
 	}
 	*/
 	public void leggTil(T t){
-		leggTil(noder-1, t);
+		leggTil(noder, t);
 	}
 
 
 	public T fjern(int pos){
 	//kan vare tom eller forst
+		if(pos > noder-1 || pos<0){
+			throw new UgyldigListeIndeks(pos);
+		}
 		Node<T> tmp = forste;
 		int teller = 0; 
 		if(pos == 0){
 			forste = forste.neste;
+			noder--;
 			return tmp.verdi; 	
 		}
 		//itererer til noden for
@@ -59,7 +65,7 @@ public class Lenkeliste<T> implements Liste<T>{
 		return ut; 
 	}
 	public T fjern(){
-		return this.fjern(noder-1);
+		return this.fjern(0);
 	}
 
 	public T hent(int pos){	
@@ -67,18 +73,21 @@ public class Lenkeliste<T> implements Liste<T>{
 		Node<T> tmp = forste;
 		while(teller<pos){
 			tmp = tmp.neste;
+			teller++;
 		}
 		return tmp.verdi;
 	
 	}
 
 	public void leggTil(int pos, T x){
+		if(pos>noder|| pos<0){ throw new UgyldigListeIndeks(pos);}
 		int teller = 0; 
 		Node<T> tmp = forste;
 		Node<T> nyNode = new Node<>(x);
 		if(pos == 0){
 			nyNode.neste = forste;
 			forste = nyNode;
+			noder++;
 			return ;
 		}
 		while(teller<pos-1){
