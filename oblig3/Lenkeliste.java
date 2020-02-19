@@ -3,7 +3,7 @@ public class Lenkeliste<T> implements Liste<T>{
 	 *
 	 */
 	protected Node<T> forste = null;
-	private int noder = 0; 
+	protected int noder = 0; 
 
 	class Node<T>{
 		T verdi;
@@ -53,11 +53,8 @@ public class Lenkeliste<T> implements Liste<T>{
 		}
 		//itererer til noden for
 		while(teller< pos-1){
-			if(tmp.neste == null){
-				System.out.println("Det er ikke nok noder i listen");
-				return null;
-			}	
 			tmp = tmp.neste;
+			teller++;
 		}
 		T ut = tmp.neste.verdi;
 		tmp.neste = tmp.neste.neste; 
@@ -69,6 +66,7 @@ public class Lenkeliste<T> implements Liste<T>{
 	}
 
 	public T hent(int pos){	
+		if(pos>=noder || pos<0 || forste==null){ throw new UgyldigListeIndeks(pos);}
 		int teller = 0;
 		Node<T> tmp = forste;
 		while(teller<pos){
@@ -80,11 +78,17 @@ public class Lenkeliste<T> implements Liste<T>{
 	}
 
 	public void leggTil(int pos, T x){
-		if(pos>noder|| pos<0){ throw new UgyldigListeIndeks(pos);}
+		if(pos>noder || pos<0){ throw new UgyldigListeIndeks(pos);}
 		int teller = 0; 
 		Node<T> tmp = forste;
 		Node<T> nyNode = new Node<>(x);
 		if(pos == 0){
+			if(forste == null){
+				forste = nyNode;
+				noder++;
+				System.out.println("etablerer forste node");
+				return;
+			}
 			nyNode.neste = forste;
 			forste = nyNode;
 			noder++;
@@ -97,6 +101,7 @@ public class Lenkeliste<T> implements Liste<T>{
 		nyNode.neste = tmp.neste; //Hvis tmp.neste er null saa blir den nye null.
 		tmp.neste = nyNode;
 		noder++;
+		System.out.println("Noder: " + noder);
 		return;
 
 	}

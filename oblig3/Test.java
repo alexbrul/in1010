@@ -50,7 +50,21 @@ public class Test{
 		 }
 
 
+		 System.out.println("stabel-----------");
 
+		 Stabel<Integer> l2 = new Stabel<>();
+
+
+		 for(Integer i = 0; i<4; i++){
+			 System.out.println("tall: " + i);
+		 	l2.leggPaa(i);
+			System.out.println("La paa: " + l2.hent(i));
+		 }
+		System.out.println("Exp: 3, 2, 1, 0");
+		 for(int i = 0; i<4; i++){
+			 System.out.println("fjerner gang nr " + i);
+		 	System.out.println(l2.taAv());
+		 }
 
 	}
 
