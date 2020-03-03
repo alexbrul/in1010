@@ -5,8 +5,8 @@ public class Lenkeliste<T> implements Liste<T>{
 	protected Node<T> forste = null;
 	protected int noder = 0; 
 
-	class Node<T>{
-		T verdi;
+	public class Node<T>{
+		public T verdi;
 		Node<T> neste = null;
 
 		protected Node(T t){
@@ -86,7 +86,6 @@ public class Lenkeliste<T> implements Liste<T>{
 			if(forste == null){
 				forste = nyNode;
 				noder++;
-				System.out.println("etablerer forste node");
 				return;
 			}
 			nyNode.neste = forste;
@@ -101,7 +100,6 @@ public class Lenkeliste<T> implements Liste<T>{
 		nyNode.neste = tmp.neste; //Hvis tmp.neste er null saa blir den nye null.
 		tmp.neste = nyNode;
 		noder++;
-		System.out.println("Noder: " + noder);
 		return;
 
 	}

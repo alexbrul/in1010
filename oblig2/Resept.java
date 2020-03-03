@@ -1,6 +1,5 @@
 public abstract class Resept{
 
-
 	public int id;
 	public static int idTeller = 0;
 	public int pasientId;
@@ -47,8 +46,5 @@ public abstract class Resept{
 	abstract public String farge();
 
 	abstract public double prisAaBetale();
-
-
-
 
 }

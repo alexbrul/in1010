@@ -66,6 +66,29 @@ public class Test{
 		 	System.out.println(l2.taAv());
 		 }
 
+
+		 System.out.println(" sortert------------------");
+		 SortertLenkeliste<Integer> sl = new SortertLenkeliste<>();
+		 Lenkeliste<Integer> ll = new Lenkeliste<>();
+
+		 for(Integer i = 0; i< 10; i++){
+		 
+		 	sl.leggTil(i);
+			System.out.println("lagt til og hentet: " + sl.hent(i));
+		 }
+
+		 SortertLenkeliste<Integer> sl2 = new SortertLenkeliste<>();
+
+		 for(int i = 90; i> 80; i--){
+		 
+		 	sl.leggTil(i);
+			System.out.println("legger til og hentet: " + sl.hent(10));
+		 }
+		sl.leggTil(6);
+		for(int i = 0; i<1000; i++){
+			System.out.println(sl.hent(i));	
+				
+		}
 	}
 
 
