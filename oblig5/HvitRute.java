@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 class HvitRute extends Rute{
 	Boolean aapning = false;
 
@@ -17,7 +18,28 @@ class HvitRute extends Rute{
 
 
 	char tilTegn(){
+		if(aapning){
+			return '*';
+		}
 		return '.';
+	}
+
+
+	public void gaa(ArrayList<Rute> vei){
+		ArrayList<Rute> ny = new ArrayList<>(vei);
+		if(aapning){
+			ny.add(this);
+			lab.utveier.add(ny);
+
+		}else{
+
+			ny.add(this);
+			for(Rute r: naboer){
+				if(!ny.contains(r)){
+					r.gaa(ny);
+				}
+			}
+		}
 	}
 
 

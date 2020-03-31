@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Labyrint{
 	static Rute[][] nett;
 	int rad;
 	int kolonne;
-
+	static ArrayList<ArrayList<Rute> > utveier =  new ArrayList<ArrayList<Rute>>(); 
 	public Labyrint(int rad, int kolonne){
 		//Viktig. Da er rutenettet med maxpos rad-1, kolonne-1
 		this.rad = rad;
@@ -73,16 +74,25 @@ public class Labyrint{
 		return kolonne;
 	}
 	public void printLab(){
-	String tmp = "";
-	for(int i = 0; i<rad; i++){
-		for(int k = 0; k<kolonne; k++){
-			tmp = tmp + nett[i][k].tilTegn();
+		String tmp = "";
+		for(int i = 0; i<rad; i++){
+			for(int k = 0; k<kolonne; k++){
+				tmp = tmp + nett[i][k].tilTegn();
+			}
+			System.out.println(tmp);
+			tmp = "";
+		
 		}
-		System.out.println(tmp);
-		tmp = "";
-	
+
 	}
 
+	public void finnUtvei(int rad, int kol){
+		ArrayList<Rute> vei = new ArrayList<>();
+		this.hentRute(rad, kol).gaa(vei);
+		for(ArrayList<Rute> v : utveier){
+			System.out.println(v);
+		}
+	
 	}
 
 	

@@ -15,26 +15,35 @@ public class Rute{
 		if(rad>0){
 			//opp
 			naboer.add(lab.hentRute(rad-1, kolonne));	
-			System.out.println("denne1?");
+			//System.out.println("denne1?");
 		}
 		if(kolonne>0){
 			//venstre
 			naboer.add(lab.hentRute(rad, kolonne-1));	
-			System.out.println("denne2?");
+			//System.out.println("denne2?");
 		}
 		if(rad<lab.hentRader()-1){
 			//ned
 			naboer.add(lab.hentRute(rad+1, kolonne));
-			System.out.println("denne3?");
+			//System.out.println("denne3?");
 		}
 		if(kolonne<lab.hentKolonner()-1){
 			naboer.add(lab.hentRute(rad, kolonne+1));	
-			System.out.println("denne4?");
+			//System.out.println("denne4?");
 		}
 	}
 
 	char tilTegn(){
 		return '.';
+	}
+
+	public void gaa(ArrayList<Rute> vei){
+		//Fanger opp svart rute. hvis det skjer saa ikke gjor noe
+		return ;
+	
+	}
+	public String toString(){
+      		return "(" + rad + ", " + kolonne + ")";
 	}
 
 
