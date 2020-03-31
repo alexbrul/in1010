@@ -5,29 +5,36 @@ public class Rute{
 	ArrayList<Rute> naboer = new ArrayList<>();
 	Labyrint lab;
 
-	public Rute(int kolonne, int rad, Labyrint lab){
+	public Rute(int rad, int kolonne, Labyrint lab){
 		this.kolonne = kolonne;
 		this.rad = rad;
 		this.lab = lab;
-		finnNabo(); //Legger til naboer
 	}
 
 	public void finnNabo(){
 		if(rad>0){
 			//opp
-			naboer.add(lab.hentRute(kolonne, rad-1));	
+			naboer.add(lab.hentRute(rad-1, kolonne));	
+			System.out.println("denne1?");
 		}
 		if(kolonne>0){
 			//venstre
-			naboer.add(lab.hentRute(kolonne-1, rad));	
+			naboer.add(lab.hentRute(rad, kolonne-1));	
+			System.out.println("denne2?");
 		}
-		if(rad<lab.hentRader()-2){
+		if(rad<lab.hentRader()-1){
 			//ned
-			naboer.add(lab.hentRute(kolonne, rad+1));
+			naboer.add(lab.hentRute(rad+1, kolonne));
+			System.out.println("denne3?");
 		}
-		if(rad<lab.hentKolonner()-2){
-			naboer.add(lab.hentRute(kolonne+1, rad));	
+		if(kolonne<lab.hentKolonner()-1){
+			naboer.add(lab.hentRute(rad, kolonne+1));	
+			System.out.println("denne4?");
 		}
+	}
+
+	char tilTegn(){
+		return '.';
 	}
 
 

@@ -1,7 +1,11 @@
 class SvartRute extends Rute{
 
-	public SvartRute(int kolonne, int rad, Labyrint lab){
-		super(kolonne, rad, lab);
+	public SvartRute(int rad, int kolonne, Labyrint lab){
+		super(rad, kolonne, lab);
+	}
+	@Override
+	char tilTegn(){
+		return '#';
 	}
 
 }
