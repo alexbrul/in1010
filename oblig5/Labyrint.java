@@ -1,13 +1,27 @@
 public class Labyrint{
 	Rute[][] nett;
-	int rader;
-	int rekker;
+	int rad;
+	int kolonne;
 
-	public Labyrint(int rader, int rekker){
-		this.nett = new Rute[rader][rekker];
-		this.rader = rader;
-		this.rekker = rekker;
+	public Labyrint(int rad, int kolonne){
+		//Viktig. Da er rutenettet med maxpos rad-1, kolonne-1
+		this.nett = new Rute[rad][kolonne];
+		this.rad = rad;
+		this.kolonne = kolonne;
 	}
+
+	public Rute hentRute(int rad, int kolonne){
+		return nett[rad][kolonne];	
+	}
+
+	public int hentRader(){
+		return rad;
+	}
+	public int hentKolonner(){
+		return kolonne;
+	}
+
+	
 
 
 
