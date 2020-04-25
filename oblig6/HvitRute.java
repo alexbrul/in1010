@@ -33,7 +33,13 @@ class HvitRute extends Rute{
 
 		}else{
 
+			//Hvis hovedtraaden ikke sender arbeiderene ut paa jobb forst maa
+			//arbeiderene se paa mens arbeideren gjor sitt arbeid.
+			//
+			//Det er bedre aa delegere forst, for saa a gjore sitt eget arbeid.
+
 			int tmp = 1;
+			ArrayList<Thread> traader = new ArrayList<>();
 			for(Rute r: naboer){
 				if(!ny.contains(r)){
 					if(tmp==naboer.size()){
@@ -42,12 +48,20 @@ class HvitRute extends Rute{
 					}else{
 						Runnable task = new Traadbeholder(r, ny); //Her er en oppgave
 						Thread traad1 = new Thread(task); //Her er en arbeider
+						traader.add(traad1);
 						traad1.start(); //Leggo
 
 					}
 				}
-
 				tmp+=1;
+			}
+			for(Thread t: traader){
+				try {
+					t.join();
+
+				} catch(Exception e) {
+				
+				}
 			}
 		}
 	}

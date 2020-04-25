@@ -93,17 +93,23 @@ public class Labyrint{
 
 	public void finnUtvei(int rad, int kol){
 		ArrayList<Rute> vei = new ArrayList<>();
-		this.hentRute(rad, kol).gaa(vei);
+		Rute r1 = this.hentRute(rad, kol);
 
-		System.out.println("ferdig gatt");	
+
+		Runnable task = new Traadbeholder(r1, vei); //Her er en oppgave
+		Thread traad1 = new Thread(task); //Her er en arbeider
+		traad1.start(); //Leggo
+		
 
 		try {
-			TimeUnit.SECONDS.sleep(10);
+			traad1.join();
 
 		} catch(Exception e) {
 		
 		}
+
 		ArrayList<ArrayList<Rute>> r = utveier2.hentListe();
+
 		for(ArrayList<Rute> v : r){
 			System.out.println(v);
 		}
