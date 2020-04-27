@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 class HvitRute extends Rute{
 	Boolean aapning = false;
 	ArrayList<Rute> veien;
@@ -40,17 +41,25 @@ class HvitRute extends Rute{
 
 			int tmp = 1;
 			ArrayList<Thread> traader = new ArrayList<>();
+			ArrayList<Rute> naboOutSource = new ArrayList<>();
+
 			for(Rute r: naboer){
 				if(!ny.contains(r)){
 					if(tmp==naboer.size()){
-						//Gaa videre nar alle andre har kjort
-						r.gaa(ny);
+						Iterator iter = naboOutSource.iterator();
+						Runnable task = new TraadBeholder(naboOutSource, ny); //Her er en oppgave
+						while(iter.hasNext()){
+							iter.next();
+							Thread traad1 = new Thread(task); //Her er en arbeider
+							traader.add(traad1);
+						}
+						for(Thread t: traader){
+							t.start();
+						}
+						//Gaa siste  nar alle andre har kjort
+						r.gaa(ny); 
 					}else{
-						Runnable task = new Traadbeholder(r, ny); //Her er en oppgave
-						Thread traad1 = new Thread(task); //Her er en arbeider
-						traader.add(traad1);
-						traad1.start(); //Leggo
-
+						naboOutSource.add(r);
 					}
 				}
 				tmp+=1;

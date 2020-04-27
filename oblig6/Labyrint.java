@@ -93,10 +93,11 @@ public class Labyrint{
 
 	public void finnUtvei(int rad, int kol){
 		ArrayList<Rute> vei = new ArrayList<>();
-		Rute r1 = this.hentRute(rad, kol);
+		ArrayList<Rute> start = new ArrayList<>();
+		start.add(this.hentRute(rad, kol));
 
 
-		Runnable task = new Traadbeholder(r1, vei); //Her er en oppgave
+		Runnable task = new TraadBeholder(start, vei); //Her er en oppgave
 		Thread traad1 = new Thread(task); //Her er en arbeider
 		traad1.start(); //Leggo
 		
