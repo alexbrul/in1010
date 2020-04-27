@@ -35,7 +35,7 @@ class HvitRute extends Rute{
 		}else{
 
 			//Hvis hovedtraaden ikke sender arbeiderene ut paa jobb forst maa
-			//arbeiderene se paa mens arbeideren gjor sitt arbeid.
+			//arbeiderene se paa mens hovedtraaden  gjor sitt arbeid.
 			//
 			//Det er bedre aa delegere forst, for saa a gjore sitt eget arbeid.
 
@@ -47,16 +47,17 @@ class HvitRute extends Rute{
 				if(!ny.contains(r)){
 					if(tmp==naboer.size()){
 						Iterator iter = naboOutSource.iterator();
-						Runnable task = new TraadBeholder(naboOutSource, ny); //Her er en oppgave
+						Runnable task = new TraadBeholder(naboOutSource, ny); //Her er en oppgave.. Gaa fra alle naboene i nabolisten
 						while(iter.hasNext()){
 							iter.next();
-							Thread traad1 = new Thread(task); //Her er en arbeider
+							Thread traad1 = new Thread(task); //Her er en arbeider, en for hver naborute - den jeg tar med hovedtraaden
 							traader.add(traad1);
 						}
 						for(Thread t: traader){
-							t.start();
+							t.start(); //starter alle.
 						}
-						//Gaa siste  nar alle andre har kjort
+
+						//Gaa siste  nar alle andre har startet
 						r.gaa(ny); 
 					}else{
 						naboOutSource.add(r);
@@ -66,6 +67,7 @@ class HvitRute extends Rute{
 			}
 			for(Thread t: traader){
 				try {
+					//brukes for a si at traden som startet alle skal vente paa alle for den blir ferdig.
 					t.join();
 
 				} catch(Exception e) {
